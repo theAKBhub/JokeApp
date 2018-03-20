@@ -10,17 +10,27 @@
     tools:context=".MainActivityFragment">
 
     <TextView
-        android:id="@+id/instructions_text_view"
+        android:id="@+id/textview_instructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/instructions" />
 
     <Button
+        android:id="@+id/button_tell_joke"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/instructions_text_view"
-        android:onClick="tellJoke"
+        android:layout_below="@+id/textview_instructions"
         android:text="@string/button_text" />
+
+    <!-- Loading indicator -->
+    <ProgressBar
+        android:id="@+id/progress_indicator"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
+
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"

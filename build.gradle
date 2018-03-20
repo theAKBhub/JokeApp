@@ -22,3 +22,14 @@ allprojects {
         google()
     }
 }
+
+ext {
+    supportLibraryVersion = '27.1.0'
+    timberLibraryVersion = '4.6.0'
+    butterknifeLibraryVersion = '8.8.1'
+    gmsAdsLibraryVersion = '11.8.0'
+    googleApiClientVersion = '1.23.0'
+    espressoLibraryVersion = '3.0.1'
+    constraintLayoutVersion = '1.0.2'
+    testRunnerVersion = '1.0.1'
+}

@@ -6,7 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/backend/backend.iml" filepath="$PROJECT_DIR$/backend/backend.iml" />
       <module fileurl="file://$PROJECT_DIR$/libJokeProvider/libJokeProvider.iml" filepath="$PROJECT_DIR$/libJokeProvider/libJokeProvider.iml" />
-      <module fileurl="file://$PROJECT_DIR$/libjokeviewer/libjokeviewer.iml" filepath="$PROJECT_DIR$/libjokeviewer/libjokeviewer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libJokeViewer/libJokeViewer.iml" filepath="$PROJECT_DIR$/libJokeViewer/libJokeViewer.iml" />
     </modules>
   </component>
 </project>

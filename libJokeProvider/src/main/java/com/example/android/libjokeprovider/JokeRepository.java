@@ -15,9 +15,9 @@ public class JokeRepository {
 
         sJokeList.add(new JokeModel(1, "Daily Life",
                 "My Dad told me to invest my money in bonds. So I bought 100 copies of Goldfinger."));
-        sJokeList.add(new JokeModel(1, "Daily Life",
+        sJokeList.add(new JokeModel(2, "Daily Life",
                 "Money can't buy you happiness? Well, check this out, I bought myself a Happy Meal."));
-        sJokeList.add(new JokeModel(1, "Daily Life",
+        sJokeList.add(new JokeModel(3, "Daily Life",
                 "What do Alexander the Great and Winnie the Pooh have in common? Same middle name."));
     }
 
