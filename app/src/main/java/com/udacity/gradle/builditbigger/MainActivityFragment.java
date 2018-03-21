@@ -15,12 +15,13 @@ import com.example.android.libjokeprovider.JokeModel;
 import com.example.android.libjokeviewer.JokeActivity;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.udacity.gradle.builditbigger.JokeAsyncTask.TaskCompleteListener;
 
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment implements JokeAsyncTask.TaskCompleteListener {
+public class MainActivityFragment extends Fragment {
 
     private Context mContext;
     private ProgressBar mProgressBar;
@@ -66,29 +67,49 @@ public class MainActivityFragment extends Fragment implements JokeAsyncTask.Task
 
     public void tellJoke() {
         mProgressBar.setVisibility(View.VISIBLE);
-        new JokeAsyncTask(this).execute(mContext);
 
-        if (mJoke != null && mJoke.length() > 0) {
+        new JokeAsyncTask(new TaskCompleteListener() {
+            @Override
+            public void onTaskComplete(String result) {
+                if (result != null) {
+                    Intent intent = new Intent(mContext, JokeActivity.class);
+                    intent.putExtra("joke", result);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(mContext, "No joke received", Toast.LENGTH_SHORT).show();
+                }
+                mProgressBar.setVisibility(View.GONE);
+            }
+        }).execute(mContext);
+    }
 
-            Intent intent = new Intent(mContext, JokeActivity.class);
+
+
+//    public void tellJoke() {
+//        mProgressBar.setVisibility(View.VISIBLE);
+//        new JokeAsyncTask(this).execute(mContext);
+//
+//        if (mJoke != null && mJoke.length() > 0) {
+
+            //Intent intent = new Intent(mContext, JokeActivity.class);
 //        JokeRepository jokeRepository = new JokeRepository();
 //        JokeModel jokeModel = jokeRepository.getJokesList().get(1);
 //        String joke = jokeModel.getJoke();
 //        Toast.makeText(this, joke, Toast.LENGTH_SHORT).show();
 //
 
-            intent.putExtra("joke", mJoke);
-            startActivity(intent);
-        } else {
-            Toast.makeText(mContext, "No joke received", Toast.LENGTH_SHORT).show();
-        }
-    }
+//            intent.putExtra("joke", mJoke);
+//            startActivity(intent);
+//        } else {
+//            Toast.makeText(mContext, "No joke received", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
-    @Override
-    public void onTaskComplete(String joke) {
-        //JokeModel jokeModel = jokeRepository.getJokesList().get(0);
-        //mJoke = jokeModel.getJoke();
-        mJoke = joke;
-        mProgressBar.setVisibility(View.GONE);
-    }
+//    @Override
+//    public void onTaskComplete(String joke) {
+//        //JokeModel jokeModel = jokeRepository.getJokesList().get(0);
+//        //mJoke = jokeModel.getJoke();
+//        mJoke = joke;
+//        mProgressBar.setVisibility(View.GONE);
+//    }
 }

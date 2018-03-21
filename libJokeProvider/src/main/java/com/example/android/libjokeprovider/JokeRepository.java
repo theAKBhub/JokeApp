@@ -2,6 +2,7 @@ package com.example.android.libjokeprovider;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * JokeRepository class populates a list of jokes and has a method to return the list to the android app
@@ -9,6 +10,7 @@ import java.util.List;
 public class JokeRepository {
 
     private static List<JokeModel> sJokeList;
+    private Random mRandomIndex;
 
     public JokeRepository() {
         sJokeList = new ArrayList<>();
@@ -24,4 +26,8 @@ public class JokeRepository {
     public List<JokeModel> getJokesList() {
         return sJokeList;
     }
+
+//    public String getJoke() {
+//        return sJokeList.get(mRandomIndex.nextInt(sJokeList.size())).getJoke();
+//    }
 }
