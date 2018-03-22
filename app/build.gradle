@@ -7,7 +7,8 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.google.cloud.tools:endpoints-framework-gradle-plugin:1.0.2'
+        classpath "com.google.cloud.tools:endpoints-framework-gradle-plugin:$rootProject.endpointsGradlePluginVersion"
+        classpath "com.google.cloud.tools:appengine-gradle-plugin:$rootProject.appengineGradlePluginVersion"
     }
 }
 
@@ -51,4 +52,5 @@ dependencies {
     })
 
     testImplementation 'junit:junit:4.12'
+    androidTestCompile 'junit:junit:4.12'
 }

@@ -3,6 +3,7 @@ package com.udacity.gradle.builditbigger;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.util.Pair;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
@@ -17,7 +18,7 @@ import java.io.IOException;
  * results on UI.
  */
 
-public class JokeAsyncTask extends AsyncTask<Context, Void, String> {
+public class JokeAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
 
     private static final String TAG = JokeAsyncTask.class.getSimpleName();
     private static JokeApi sJokeApiService = null;
@@ -35,7 +36,7 @@ public class JokeAsyncTask extends AsyncTask<Context, Void, String> {
     }
 
     @Override
-    protected String doInBackground(Context... contexts) {
+    protected String doInBackground(Pair<Context, String>... params) {
         if (sJokeApiService == null) {
 
             JokeApi.Builder builder = new Builder(AndroidHttp.newCompatibleTransport(),
@@ -56,10 +57,11 @@ public class JokeAsyncTask extends AsyncTask<Context, Void, String> {
             sJokeApiService = builder.build();
         }
 
-        mContext = contexts[0];
+        mContext = params[0].first;
+        String jokeType = params[0].second; Log.d(TAG, "Joke type >>>> " + jokeType);
 
         try {
-            return sJokeApiService.tellJoke().execute().getData();
+            return sJokeApiService.getJoke(jokeType).execute().getData();
         } catch (IOException ioe) {
             Log.e(TAG, ioe.getMessage());
             return null;
@@ -67,9 +69,13 @@ public class JokeAsyncTask extends AsyncTask<Context, Void, String> {
     }
 
     @Override
-    protected void onPostExecute(String result) {
-        Log.d(TAG, result);
-        mTaskCompleteListener.onTaskComplete(result);
+    protected void onPostExecute(String joke) {
+        if (joke != null) {
+            //Log.d(TAG, joke);
+            mTaskCompleteListener.onTaskComplete(joke);
+        } else {
+            Log.d(TAG, "Joke not received");
+        }
     }
 
 }
