@@ -4,11 +4,10 @@ import android.app.Application;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.v4.util.Pair;
 import android.test.ApplicationTestCase;
-import android.util.Pair;
 import com.udacity.gradle.builditbigger.JokeAsyncTask.TaskCompleteListener;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -17,13 +16,12 @@ import org.junit.runner.RunWith;
  */
 
 @RunWith(AndroidJUnit4.class)
-public class JokeAsyncTaskTest extends ApplicationTestCase<Application> implements TaskCompleteListener {
+public class JokeAsyncTaskTest extends ApplicationTestCase<Application> {
 
 
     private CountDownLatch mSignal;
-    private String mJokeFetched;
     private static final String JOKE_TYPE = "science";
-    private JokeAsyncTask mJokeAsyncTask;
+
 
 
     public JokeAsyncTaskTest() {
@@ -36,7 +34,6 @@ public class JokeAsyncTaskTest extends ApplicationTestCase<Application> implemen
 
         // signal to indicate when task is completed
         mSignal = new CountDownLatch(1);
-        mJokeAsyncTask = new JokeAsyncTask(this);
     }
 
     @Override
@@ -48,24 +45,24 @@ public class JokeAsyncTaskTest extends ApplicationTestCase<Application> implemen
     @SuppressWarnings("unchecked")
     @Test
     public void testJokeIsFetced() throws Throwable {
-        mJokeAsyncTask.execute(new Pair<Context, String>(InstrumentationRegistry.getTargetContext(), JOKE_TYPE));
-        mSignal.await(30, TimeUnit.SECONDS);
-        assertTrue("Joke fetched is NULL", mJokeFetched != null);
 
-        /*try {
+        String jokeFetched;
 
-            //new JokeAsyncTask(this).execute(Pair.create(InstrumentationRegistry.getTargetContext(), jokeType));
-            mSignal.await(30, TimeUnit.SECONDS);
-            //assertTrue("Joke fetched is EMPTY", !mJokeFetched.isEmpty());
-            assertTrue("Joke fetched is NULL", mJokeFetched != null);
-        } catch (Exception e) {
-            fail();
-        }*/
+        JokeAsyncTask task = new JokeAsyncTask(new TaskCompleteListener() {
+            @Override
+            public void onTaskComplete(String result) {
+            }
+        });
+
+        try {
+            task.execute(new Pair<Context, String>(InstrumentationRegistry.getTargetContext(), JOKE_TYPE));
+            jokeFetched = task.get();
+            assertNotNull("Joke fetched is NULL", jokeFetched);
+            assertTrue("Joke fetched is EMPTY", !jokeFetched.isEmpty());
+        } catch (InterruptedException ie) {
+            fail("Something wrong happened!!");
+        }
+
     }
 
-    @Override
-    public void onTaskComplete(String result) {
-        mJokeFetched = result;
-        mSignal.countDown();
-    }
 }

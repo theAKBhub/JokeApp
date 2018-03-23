@@ -33,6 +33,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "type"
+
+    productFlavors {
+        free {
+            applicationId "com.udacity.gradle.builditbigger.free"
+            dimension "type"
+        }
+        paid {
+            applicationId "com.udacity.gradle.builditbigger.paid"
+            dimension "type"
+            minSdkVersion 21
+        }
+    }
 }
 
 dependencies {
@@ -53,4 +67,9 @@ dependencies {
 
     testImplementation 'junit:junit:4.12'
     androidTestCompile 'junit:junit:4.12'
+
+
+    androidTestCompile 'com.android.support:support-annotations:27.1.0'
+    androidTestCompile 'com.android.support.test:runner:1.0.1'
+    androidTestCompile 'com.android.support.test:rules:1.0.1'
 }

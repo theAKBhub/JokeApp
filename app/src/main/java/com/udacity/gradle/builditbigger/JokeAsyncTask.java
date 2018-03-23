@@ -3,7 +3,7 @@ package com.udacity.gradle.builditbigger;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.util.Pair;
+import android.support.v4.util.Pair;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
@@ -58,7 +58,8 @@ public class JokeAsyncTask extends AsyncTask<Pair<Context, String>, Void, String
         }
 
         mContext = params[0].first;
-        String jokeType = params[0].second; Log.d(TAG, "Joke type >>>> " + jokeType);
+        String jokeType = params[0].second;
+        Log.d(TAG, "Joke type >>>> " + jokeType);
 
         try {
             return sJokeApiService.getJoke(jokeType).execute().getData();
@@ -71,10 +72,10 @@ public class JokeAsyncTask extends AsyncTask<Pair<Context, String>, Void, String
     @Override
     protected void onPostExecute(String joke) {
         if (joke != null) {
-            //Log.d(TAG, joke);
+            Log.d(TAG, "Joke >>>> " + joke);
             mTaskCompleteListener.onTaskComplete(joke);
         } else {
-            Log.d(TAG, "Joke not received");
+            Log.d(TAG, "Joke >>>> Joke not received");
         }
     }
 
