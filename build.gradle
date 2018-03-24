@@ -35,4 +35,6 @@ ext {
     endpointsGradlePluginVersion = '1.0.2'
     appengineGradlePluginVersion = '1.3.3'
     endpointsFrameworkVersion = '2.0.9'
+    junitVersion = '4.12'
+    findbugsVersion = '3.0.1'
 }

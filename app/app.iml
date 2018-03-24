@@ -135,7 +135,6 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/builds" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/check-manifest" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/classes" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/classes-jar" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-classes" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-runtime-classes" />
@@ -212,10 +211,6 @@
     <orderEntry type="library" name="com.android.support:support-fragment-27.1.0" level="project" />
     <orderEntry type="library" name="com.android.support:support-v4-27.1.0" level="project" />
     <orderEntry type="library" name="android.arch.core:runtime-1.1.0" level="project" />
-    <orderEntry type="module" module-name="libJokeProvider" />
-    <orderEntry type="module" module-name="libJokeViewer" />
-    <orderEntry type="module" module-name="libJokeProvider" />
-    <orderEntry type="module" module-name="libJokeViewer" />
     <orderEntry type="module" module-name="libJokeProvider" />
     <orderEntry type="module" module-name="libJokeViewer" />
   </component>
