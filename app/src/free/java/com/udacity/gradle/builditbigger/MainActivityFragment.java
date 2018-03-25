@@ -71,8 +71,9 @@ public class MainActivityFragment extends Fragment {
                     mInterstitialAd.show();
                 } else {
                     Log.e(TAG, "There was an error with loading Interstitial Ad.");
+                    tellJoke();
                 }
-                tellJoke();
+                //tellJoke();
             }
         });
 
@@ -82,8 +83,9 @@ public class MainActivityFragment extends Fragment {
             public void onAdClosed() {
                 super.onAdClosed();
                 // Code to be executed when when the interstitial ad is closed by user using the Close button
-                        //tellJoke();
+
                 requestInterstitialAd();
+                tellJoke();
 
             }
 
@@ -117,4 +119,10 @@ public class MainActivityFragment extends Fragment {
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "fragment resumed");
+    }
 }

@@ -38,3 +38,18 @@ ext {
     junitVersion = '4.12'
     findbugsVersion = '3.0.1'
 }
+
+
+evaluationDependsOn ":app"
+evaluationDependsOn ":backend"
+
+project(":backend") {
+    appengine{
+        daemon true
+    }
+}
+
+task runTests(dependsOn: ":backend:appengineRun") << {
+    println "Task [runTests] completed >> Task cycle completed"
+}
+runTests.finalizedBy([":app:connectedAndroidTest", ":backend:appengineStop"])
