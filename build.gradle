@@ -40,7 +40,7 @@ ext {
 }
 
 
-evaluationDependsOn ":app"
+/*evaluationDependsOn ":app"
 evaluationDependsOn ":backend"
 
 project(":backend") {
@@ -52,4 +52,18 @@ project(":backend") {
 task runTests(dependsOn: ":backend:appengineRun") << {
     println "Task [runTests] completed >> Task cycle completed"
 }
-runTests.finalizedBy([":app:connectedAndroidTest", ":backend:appengineStop"])
+runTests.finalizedBy([":app:connectedAndroidTest", ":backend:appengineStop"])*/
+
+task startAppEngine (dependsOn: ":backend:appengineRun") {
+    project(":backend").afterEvaluate { backend ->
+        backend.extensions.appengine.daemon = true
+    }
+    doLast {
+        println "Starting App Engine"
+    }
+}
+
+task runTests(dependsOn: ":startAppEngine") << {
+    // Run tests
+    // Stop backend
+}
