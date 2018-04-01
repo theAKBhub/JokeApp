@@ -18,12 +18,16 @@ import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 public class JokeAsyncTaskTest extends ApplicationTestCase<Application> {
 
+    private static final String JOKE_TYPE = "technology";
+    private static final String ALERT_JOKE_NULL = "Joke fetched is null";
+    private static final String ALERT_JOKE_EMPTY = "Joke fetched is empty";
+    private static final String ERROR_FETCHING_JOKE = "There was an error fetching the joke!";
 
     private CountDownLatch mSignal;
-    private static final String JOKE_TYPE = "science";
 
-
-
+    /**
+     * Default constructor
+     */
     public JokeAsyncTaskTest() {
         super(Application.class);
     }
@@ -45,7 +49,6 @@ public class JokeAsyncTaskTest extends ApplicationTestCase<Application> {
     @SuppressWarnings("unchecked")
     @Test
     public void testJokeIsFetced() throws Throwable {
-
         String jokeFetched;
 
         JokeAsyncTask task = new JokeAsyncTask(new TaskCompleteListener() {
@@ -57,12 +60,10 @@ public class JokeAsyncTaskTest extends ApplicationTestCase<Application> {
         try {
             task.execute(new Pair<Context, String>(InstrumentationRegistry.getTargetContext(), JOKE_TYPE));
             jokeFetched = task.get();
-            assertNotNull("Joke fetched is NULL", jokeFetched);
-            assertTrue("Joke fetched is EMPTY", !jokeFetched.isEmpty());
+            assertNotNull(ALERT_JOKE_NULL, jokeFetched);
+            assertTrue(ALERT_JOKE_EMPTY, !jokeFetched.isEmpty());
         } catch (InterruptedException ie) {
-            fail("Something wrong happened!!");
+            fail(ERROR_FETCHING_JOKE);
         }
-
     }
-
 }

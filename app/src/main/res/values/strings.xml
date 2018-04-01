@@ -4,4 +4,12 @@
     <string name="button_text">Tell Joke</string>
     <string name="action_settings">Settings</string>
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+
+    <!-- Joke Categories -->
+    <string name="joke_daily">Daily Life</string>
+    <string name="joke_technology">Technology</string>
+    <string name="joke_animal">Animal</string>
+    <string name="joke_work">Work</string>
+    <string name="joke_health">Health</string>
+    <string name="joke_success">Success</string>
 </resources>

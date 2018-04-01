@@ -9,7 +9,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.google.guava:guava:22.0'
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.2.0-alpha08'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -27,7 +27,7 @@ ext {
     supportLibraryVersion = '27.1.0'
     timberLibraryVersion = '4.6.0'
     butterknifeLibraryVersion = '8.8.1'
-    gmsAdsLibraryVersion = '11.8.0'
+    gmsAdsLibraryVersion = '12.0.1'
     googleApiClientVersion = '1.23.0'
     espressoLibraryVersion = '3.0.1'
     constraintLayoutVersion = '1.0.2'
@@ -40,30 +40,34 @@ ext {
 }
 
 
-/*evaluationDependsOn ":app"
-evaluationDependsOn ":backend"
+// Custom task to start engine, run test and finally stop engine
 
-project(":backend") {
-    appengine{
-        daemon true
-    }
-}
-
-task runTests(dependsOn: ":backend:appengineRun") << {
-    println "Task [runTests] completed >> Task cycle completed"
-}
-runTests.finalizedBy([":app:connectedAndroidTest", ":backend:appengineStop"])*/
-
-task startAppEngine (dependsOn: ":backend:appengineRun") {
-    project(":backend").afterEvaluate { backend ->
-        backend.extensions.appengine.daemon = true
-    }
+task startAppEngine (dependsOn: ":backend:appengineStart") {
     doLast {
-        println "Starting App Engine"
+        println "Task [startAppEngine] completed >> App Engine started"
     }
 }
 
-task runTests(dependsOn: ":startAppEngine") << {
-    // Run tests
-    // Stop backend
+task runAndroidTest (dependsOn: ":app:connectedAndroidTest") {
+    doLast {
+        println "Task [runAndroidTest] completed >> Test reports can be found at project-folder/app/build/reports directory"
+    }
 }
+
+task stopAppEngine (dependsOn: ":backend:appengineStop") {
+    doLast {
+        println "Task [stopAppEngine] completed >> App Engine stopped"
+    }
+}
+
+task jokeAppCustomTask (dependsOn: "startAppEngine") {
+    dependsOn "runAndroidTest"
+    mustRunAfter "startAppEngine"
+    doLast {
+        println "Task [jokeAppCustomTask] completed >> Task cycle completed"
+    }
+    finalizedBy "stopAppEngine"
+}
+
+runAndroidTest.mustRunAfter "startAppEngine"
+runAndroidTest.finalizedBy "stopAppEngine"

@@ -39,7 +39,7 @@ public class JokeRepository {
         switch (jokeType) {
             case "daily":
                 return sJokeListDaily.get(new Random().nextInt(sJokeListDaily.size()-1));
-            case "science":
+            case "technology":
                 return sJokeListScience.get(new Random().nextInt(sJokeListScience.size()-1));
             default:
                 return sJokeListDaily.get(new Random().nextInt(sJokeListDaily.size()-1));
