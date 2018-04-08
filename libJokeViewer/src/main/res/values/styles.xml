@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Styles for JokeActivity -->
+
+    <style name="TextViewJokeCategory">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/joke_catg_box_padding</item>
+        <item name="android:paddingBottom">@dimen/joke_catg_box_padding</item>
+        <item name="android:background">@color/colorTealAlphaBackground</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textSize">@dimen/textsize_medium</item>
+    </style>
+
+    <style name="TextViewJoke">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/joke_box_padding</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textSize">@dimen/textsize_joke_display</item>
+    </style>
+
+    <style name="ButtonRefreshJoke">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:paddingLeft">@dimen/joke_catg_box_padding</item>
+        <item name="android:paddingRight">@dimen/joke_catg_box_padding</item>
+        <item name="android:background">@color/colorButton</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textSize">@dimen/textsize_small</item>
+    </style>
+</resources>

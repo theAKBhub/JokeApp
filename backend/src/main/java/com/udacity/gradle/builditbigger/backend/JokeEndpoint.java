@@ -5,6 +5,7 @@ import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
+import java.util.ArrayList;
 
 
 /** An endpoint class we are exposing */
@@ -25,12 +26,10 @@ public class JokeEndpoint {
 
         JokeRepository jokeRepository = new JokeRepository();
 
-        //String joke = jokeRepository.getDailyJoke();
-        String joke = jokeRepository.getJokeFromRepo(jokeType);
+        ArrayList<String> jokeList = jokeRepository.getJokeList(jokeType);
         JokeBean response = new JokeBean();
-        response.setData(joke);
+        response.setList(jokeList);
 
         return response;
     }
-
 }

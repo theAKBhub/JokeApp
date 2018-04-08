@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">libJokeViewer</string>
+    <string name="app_name">Joke Viewer</string>
+    <string name="button_label_joke_refresh">Tell Another Joke</string>
+    <string name="title_joke_viewer_activity">A Joke For You</string>
+    <string name="error_display_joke">An error occurred in displaying joke. Please try again!</string>
+    <string name="label_joke_category">%s Jokes</string>
 </resources>

@@ -1,0 +1,10 @@
+<resources>
+    <style name="GridViewText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/colorHighlightText</item>
+        <item name="android:textSize">@dimen/textsize_medium</item>
+    </style>
+</resources>

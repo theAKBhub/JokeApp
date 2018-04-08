@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:padding="@dimen/panel_margin"
+    android:background="@drawable/gridview_state_selector"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/grid_joke_image"
+        android:contentDescription="@string/joke_daily"
+        tools:src="@drawable/ic_daily"
+        style="@style/GridViewImage"/>
+
+    <TextView
+        android:id="@+id/grid_joke_category"
+        app:fontFamily="sans-serif-condensed"
+        tools:text="@string/joke_daily"
+        style="@style/GridViewText"/>
+
+</LinearLayout>

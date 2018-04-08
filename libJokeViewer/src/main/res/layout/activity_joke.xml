@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_margin"
+    android:background="@drawable/tiled_background"
     tools:context="com.example.android.libjokeviewer.JokeActivity">
 
     <TextView
-        android:id="@+id/textview_joke_display"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:id="@+id/textview_joke_category"
+        tools:text="@string/app_name"
+        style="@style/TextViewJokeCategory"/>
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/textview_joke_display"
+        android:layout_below="@id/textview_joke_category"
+        tools:text="@string/app_name"
+        style="@style/TextViewJoke"/>
+
+    <Button
+        android:id="@+id/button_refresh_joke"
+        android:text="@string/button_label_joke_refresh"
+        style="@style/ButtonRefreshJoke"/>
+
+</RelativeLayout>

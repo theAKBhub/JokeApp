@@ -8,9 +8,10 @@ import android.support.v4.util.Pair;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.android.libjokeviewer.JokeActivity;
@@ -19,10 +20,11 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.udacity.gradle.builditbigger.JokeAsyncTask.TaskCompleteListener;
+import java.util.ArrayList;
 
 
 /**
- * A placeholder fragment containing a simple view.
+ * Fragment for free flavour
  */
 public class MainActivityFragment extends Fragment {
 
@@ -30,6 +32,11 @@ public class MainActivityFragment extends Fragment {
     private Context mContext;
     private ProgressBar mProgressBar;
     private InterstitialAd mInterstitialAd;
+    private int mGridViewPosition;
+
+    public static final String[] JOKE_CATEGORIES_FREE = new String[] {
+            "daily", "technology", "work", "animal"
+    };
 
 
     @Override
@@ -44,85 +51,90 @@ public class MainActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
+
         View root = inflater.inflate(R.layout.fragment_main, container, false);
 
-        AdView mAdView = root.findViewById(R.id.adView);
-        // Create an ad request. Check logcat output for the hashed device ID to
-        // get test ads on a physical device. e.g.
-        // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .build();
-        mAdView.loadAd(adRequest);
+        // display banner ad
+        displayBannerAd(root);
 
-        mInterstitialAd = new InterstitialAd(mContext);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        // display interstitial ad
+        displayInterstitialAd();
 
-
-
+        // get reference to progress bar
         mProgressBar = root.findViewById(R.id.progress_indicator);
 
-        Button buttonTellJoke = root.findViewById(R.id.button_tell_joke);
-        buttonTellJoke.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        // set up GridView to display joke categories
+        GridView gridView = root.findViewById(R.id.gridview_joke_categories);
+        gridView.setAdapter(new CategoryAdapter(mContext, JOKE_CATEGORIES_FREE));
+
+        // set ItemClickListener on GridView items
+        gridView.setOnItemClickListener(new OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mGridViewPosition = position;
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
                 } else {
-                    Log.e(TAG, "There was an error with loading Interstitial Ad.");
-                    tellJoke();
+                    Log.e(TAG, getString(R.string.error_interstitial_ad));
                 }
-                //tellJoke();
             }
         });
 
-
+        // set listener on Interstitial ad
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdClosed() {
                 super.onAdClosed();
                 // Code to be executed when when the interstitial ad is closed by user using the Close button
-
                 requestInterstitialAd();
                 tellJoke();
-
             }
-
         });
 
-
         return root;
+    }
+
+    /**
+     * Method to create a banner ad request
+     */
+    public void displayBannerAd(View view) {
+        AdView mAdView = view.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
+        mAdView.loadAd(adRequest);
+    }
+
+    /**
+     * Method to create an Interstitial ad just after a joke category is selected
+     * and just before the joke is displayed
+     */
+    public void displayInterstitialAd() {
+        mInterstitialAd = new InterstitialAd(mContext);
+        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
     }
 
     @SuppressWarnings("unchecked")
     public void tellJoke() {
         mProgressBar.setVisibility(View.VISIBLE);
 
-
         new JokeAsyncTask(new TaskCompleteListener() {
             @Override
-            public void onTaskComplete(String jokeReceived) {
-                if (jokeReceived != null) {
+            public void onTaskComplete(ArrayList<String> jokeListReceived) {
+                if (jokeListReceived != null) {
                     Intent intent = new Intent(mContext, JokeActivity.class);
-                    intent.putExtra("joke", jokeReceived);
+                    intent.putExtra(JokeActivity.INTENT_KEY_JOKE, jokeListReceived);
+                    intent.putExtra(JokeActivity.INTENT_KEY_JOKE_CATEGORY, JOKE_CATEGORIES_FREE[mGridViewPosition]);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(mContext, "No joke received", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, R.string.error_fetching_joke, Toast.LENGTH_SHORT).show();
                 }
                 mProgressBar.setVisibility(View.GONE);
             }
-        }).execute(new Pair<Context, String>(mContext, "daily"));
+        }).execute(new Pair<Context, String>(mContext, JOKE_CATEGORIES_FREE[mGridViewPosition]));
     }
 
     private void requestInterstitialAd() {
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
-    }
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.d(TAG, "fragment resumed");
     }
 }

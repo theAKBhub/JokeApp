@@ -1,0 +1,10 @@
+<resources>
+    <dimen name="activity_margin">48dp</dimen>
+    <dimen name="joke_box_padding">32dp</dimen>
+    <dimen name="joke_catg_box_padding">20dp</dimen>
+
+    <!-- Font Sizes -->
+    <dimen name="textsize_small">14sp</dimen>
+    <dimen name="textsize_medium">16sp</dimen>
+    <dimen name="textsize_joke_display">32sp</dimen>
+</resources>

@@ -7,23 +7,30 @@ import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.android.libjokeviewer.JokeActivity;
 import com.udacity.gradle.builditbigger.JokeAsyncTask.TaskCompleteListener;
+import java.util.ArrayList;
 
 
 /**
- * A placeholder fragment containing a simple view.
+ * Fragment for paid flavour
  */
 public class MainActivityFragment extends Fragment {
 
     private static final String TAG = JokeAsyncTask.class.getSimpleName();
     private Context mContext;
     private ProgressBar mProgressBar;
+    private int mGridViewPosition;
+
+    public static final String[] JOKE_CATEGORIES_PAID = new String[] {
+            "daily", "technology", "work", "animal", "health", "success"
+    };
 
 
     @Override
@@ -38,15 +45,20 @@ public class MainActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
+
         View root = inflater.inflate(R.layout.fragment_main, container, false);
 
-
+        // get reference to progress bar
         mProgressBar = root.findViewById(R.id.progress_indicator);
 
-        Button buttonTellJoke = root.findViewById(R.id.button_tell_joke);
-        buttonTellJoke.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        // set up GridView to display joke categories
+        GridView gridView = root.findViewById(R.id.gridview_joke_categories);
+        gridView.setAdapter(new CategoryAdapter(mContext, JOKE_CATEGORIES_PAID));
+
+        // set ItemClickListener on GridView items
+        gridView.setOnItemClickListener(new OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mGridViewPosition = position;
                 tellJoke();
             }
         });
@@ -60,16 +72,17 @@ public class MainActivityFragment extends Fragment {
 
         new JokeAsyncTask(new TaskCompleteListener() {
             @Override
-            public void onTaskComplete(String jokeReceived) {
-                if (jokeReceived != null) {
+            public void onTaskComplete(ArrayList<String> jokeListReceived) {
+                if (jokeListReceived != null) {
                     Intent intent = new Intent(mContext, JokeActivity.class);
-                    intent.putExtra("joke", jokeReceived);
+                    intent.putExtra(JokeActivity.INTENT_KEY_JOKE, jokeListReceived);
+                    intent.putExtra(JokeActivity.INTENT_KEY_JOKE_CATEGORY, JOKE_CATEGORIES_PAID[mGridViewPosition]);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(mContext, "No joke received", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, R.string.error_fetching_joke, Toast.LENGTH_SHORT).show();
                 }
                 mProgressBar.setVisibility(View.GONE);
             }
-        }).execute(new Pair<Context, String>(mContext, "daily"));
+        }).execute(new Pair<Context, String>(mContext, JOKE_CATEGORIES_PAID[mGridViewPosition]));
     }
 }

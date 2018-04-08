@@ -11,6 +11,7 @@ import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import com.udacity.gradle.builditbigger.backend.jokeApi.JokeApi;
 import com.udacity.gradle.builditbigger.backend.jokeApi.JokeApi.Builder;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * AsyncTask class to make request to the Cloud Endpoints backend API and retrieve the jokes.
@@ -18,17 +19,18 @@ import java.io.IOException;
  * results on UI.
  */
 
-public class JokeAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
+public class JokeAsyncTask extends AsyncTask<Pair<Context, String>, Void, ArrayList<String>> {
 
     private static final String TAG = JokeAsyncTask.class.getSimpleName();
+    private static final String LOCALHOST_IP_ADDRESS = "http://10.0.2.2:8080/_ah/api/";
     private static JokeApi sJokeApiService = null;
-
-    private Context mContext;
     private TaskCompleteListener mTaskCompleteListener;
+    private Context mContext;
 
 
     public interface TaskCompleteListener {
-        void onTaskComplete(String result);
+
+        void onTaskComplete(ArrayList<String> result);
     }
 
     public JokeAsyncTask(TaskCompleteListener listener) {
@@ -36,18 +38,15 @@ public class JokeAsyncTask extends AsyncTask<Pair<Context, String>, Void, String
     }
 
     @Override
-    protected String doInBackground(Pair<Context, String>... params) {
-        if (sJokeApiService == null) {
+    protected ArrayList<String> doInBackground(Pair<Context, String>... params) {
+        String jokeType;
 
+        if (sJokeApiService == null) {
             JokeApi.Builder builder = new Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
-
-                    // options for running against local devappserver
                     // - 10.0.2.2 is localhost's IP address in Android emulator
-                    // - turn off compression when running against local devappserver
-                    .setRootUrl("http://10.0.2.2:8080/_ah/api/")
+                    .setRootUrl(LOCALHOST_IP_ADDRESS)
                     .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
-
                         @Override
                         public void initialize(AbstractGoogleClientRequest<?> request) throws IOException {
                             request.setDisableGZipContent(true);
@@ -57,12 +56,13 @@ public class JokeAsyncTask extends AsyncTask<Pair<Context, String>, Void, String
             sJokeApiService = builder.build();
         }
 
+        // get the parameters
         mContext = params[0].first;
-        String jokeType = params[0].second;
-        Log.d(TAG, "Joke type >>>> " + jokeType);
+        jokeType = params[0].second;
 
+        // fetch list of jokes from backend using API
         try {
-            return sJokeApiService.getJoke(jokeType).execute().getData();
+            return (new ArrayList<>(sJokeApiService.getJoke(jokeType).execute().getList()));
         } catch (IOException ioe) {
             Log.e(TAG, ioe.getMessage());
             return null;
@@ -70,13 +70,11 @@ public class JokeAsyncTask extends AsyncTask<Pair<Context, String>, Void, String
     }
 
     @Override
-    protected void onPostExecute(String joke) {
-        if (joke != null) {
-            Log.d(TAG, "Joke >>>> " + joke);
-            mTaskCompleteListener.onTaskComplete(joke);
+    protected void onPostExecute(ArrayList<String> jokeList) {
+        if (jokeList != null) {
+            mTaskCompleteListener.onTaskComplete(jokeList);
         } else {
-            Log.d(TAG, "Joke >>>> Joke not received");
+            Log.d(TAG, mContext.getString(R.string.error_fetching_joke));
         }
     }
-
 }

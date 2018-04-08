@@ -7,6 +7,7 @@ import android.support.test.runner.AndroidJUnit4;
 import android.support.v4.util.Pair;
 import android.test.ApplicationTestCase;
 import com.udacity.gradle.builditbigger.JokeAsyncTask.TaskCompleteListener;
+import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -53,13 +54,13 @@ public class JokeAsyncTaskTest extends ApplicationTestCase<Application> {
 
         JokeAsyncTask task = new JokeAsyncTask(new TaskCompleteListener() {
             @Override
-            public void onTaskComplete(String result) {
+            public void onTaskComplete(ArrayList<String> result) {
             }
         });
 
         try {
             task.execute(new Pair<Context, String>(InstrumentationRegistry.getTargetContext(), JOKE_TYPE));
-            jokeFetched = task.get();
+            jokeFetched = task.get().get(0);
             assertNotNull(ALERT_JOKE_NULL, jokeFetched);
             assertTrue(ALERT_JOKE_EMPTY, !jokeFetched.isEmpty());
         } catch (InterruptedException ie) {
