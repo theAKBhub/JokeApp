@@ -16,7 +16,7 @@ public class JokeData {
             "What did one ocean say to another ocean? \nNothing. It just waved.",
             "Why did the runner stop listing to music? \nBecause he broke too many records.",
             "Why is a river rich? \nIt has banks on both sides.",
-            "What starts with a P, ends with an E, and has a many letters in it? \nPost office",
+            "What starts with a P, ends with an E, and has many letters in it? \nPost office",
             "What do you call sad coffee? \nDespresso.",
             "What goes through towns, up and over hills, but doesn\'t move? \nThe road.",
             "What never asks questions but receives a lot of answers? \nThe telephone.",
@@ -24,14 +24,14 @@ public class JokeData {
     };
     
     public static final String [] JOKES_TECHNOLOGY = {
-            "I needed a password eight characters long so I picked Snow White and the Seven Dwarves.",
+            "I needed a password eight characters long so I picked Snow White and the Seven Dwarfs.",
             "The first computer dates back to Adam and Eve. It was an Apple with limited memory, just one byte. "
                     + "And then everything crashed.",
             "To the mathematicians who thought of the idea of zero, thanks for nothing!",
             "How did Benjamin Franklin feel about discovering electricity? \nHe was shocked!",
             "What do computers eat for a snack? \nMicrochips!",
             "How do trees access the internet? \nThey log in.",
-            "What did the spider do on the computer? \nMade a website!",
+            "What did the spider do on the computer? \nMade a Web!",
             "What computer sings the best? \nA Dell.",
             "What does an air conditioner have in common with a computer? They both lose efficiency as soon as you open windows.",
             "What did the computer do at lunchtime? \nHad a byte!",

@@ -30,7 +30,7 @@
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:paddingLeft">@dimen/joke_catg_box_padding</item>
         <item name="android:paddingRight">@dimen/joke_catg_box_padding</item>
-        <item name="android:background">@color/colorButton</item>
+        <item name="android:background">@drawable/button_ripple</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/colorTextPrimary</item>
         <item name="android:textSize">@dimen/textsize_small</item>
