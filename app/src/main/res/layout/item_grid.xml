@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -12,14 +13,14 @@
 
     <ImageView
         android:id="@+id/grid_joke_image"
+        style="@style/GridViewImage"
         android:contentDescription="@string/joke_daily"
-        tools:src="@drawable/ic_daily"
-        style="@style/GridViewImage"/>
+        tools:src="@drawable/ic_daily"/>
 
     <TextView
         android:id="@+id/grid_joke_category"
+        style="@style/GridViewText"
         app:fontFamily="sans-serif-condensed"
-        tools:text="@string/joke_daily"
-        style="@style/GridViewText"/>
+        tools:text="@string/joke_daily"/>
 
 </LinearLayout>

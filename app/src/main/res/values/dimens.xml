@@ -1,7 +1,6 @@
 <resources>
     <dimen name="activity_margin">16dp</dimen>
     <dimen name="panel_margin">20dp</dimen>
-
     <!-- Font Sizes -->
     <dimen name="textsize_xxsmall">12sp</dimen>
     <dimen name="textsize_xsmall">14sp</dimen>

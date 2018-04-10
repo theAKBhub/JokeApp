@@ -61,7 +61,7 @@ public class JokeData {
             "Why couldn\'t the leopard play hide and seek? \nBecause he was always spotted.",
             "What is the best way to communicate with a fish? \nDrop it a line!",
             "I named my dog 6 miles so I can tell people that I walk 6 miles every single day.",
-            "Why did the duck got arrested? \nBecause he got caught selling quack.",
+            "Why did the duck get arrested? \nBecause he got caught selling quack.",
             "Why do seagulls fly over the sea? \nBecause if they flew over the bay they\'d be bagels!",
             "Can a kangaroo jump higher than the Empire State Building? \nOf course. The Empire State Building can\'t jump.",
             "Why are fish not good at tennis? \nThey are afraid of getting close to the net."
