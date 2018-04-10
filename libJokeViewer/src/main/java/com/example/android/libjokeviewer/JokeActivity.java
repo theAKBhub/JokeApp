@@ -16,12 +16,15 @@ public class JokeActivity extends AppCompatActivity {
 
     public static final String INTENT_KEY_JOKE = "joke_list";
     public static final String INTENT_KEY_JOKE_CATEGORY = "joke_category";
-    public static final String TYPEFACE = "fonts/roboto_condensed_l.ttf";
-    public static final String TYPEFACE_NOTO = "fonts/notosans_r.ttf";
+
+    private static final String TYPEFACE = "fonts/roboto_condensed_l.ttf";
+    private static final String TYPEFACE_NOTO = "fonts/notosans_r.ttf";
+    private static final String STATE_JOKE_INDEX = "state_joke_index";
 
     private String mJoke;
     private String mJokeCategory;
     private ArrayList<String> mJokeList;
+    private int mJokeListIndex;
     Typeface mTypefaceJoke;
     Typeface mTypefaceJokeCategory;
 
@@ -63,6 +66,7 @@ public class JokeActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.error_display_joke, Toast.LENGTH_SHORT).show();
             return;
         } else {
+            mJokeListIndex = new Random().nextInt(mJokeList.size()-1);
             displayRandomJoke();
         }
 
@@ -70,9 +74,26 @@ public class JokeActivity extends AppCompatActivity {
         mButtonJokeRefresh.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                mJokeListIndex = new Random().nextInt(mJokeList.size()-1);
                 displayRandomJoke();
             }
         });
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle state) {
+        super.onSaveInstanceState(state);
+        state.putInt(STATE_JOKE_INDEX, mJokeListIndex);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        if (savedInstanceState != null) {
+            mJokeListIndex = savedInstanceState.getInt(STATE_JOKE_INDEX);
+            displayRandomJoke();
+        }
     }
 
     /**
@@ -101,7 +122,7 @@ public class JokeActivity extends AppCompatActivity {
      * Method to display a random joke
      */
     public void displayRandomJoke() {
-        mJoke = mJokeList.get(new Random().nextInt(mJokeList.size()-1));
+        mJoke = mJokeList.get(mJokeListIndex);
         mTextViewJokeDisplay.setText(mJoke);
     }
 

@@ -1,7 +1,7 @@
 package com.example.android.libjokeviewer;
 
 /**
- * Utility class contains common methods
+ * Utility class containing common methods
  */
 public class Utils {
 

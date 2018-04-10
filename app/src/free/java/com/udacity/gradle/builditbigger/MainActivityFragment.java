@@ -134,6 +134,9 @@ public class MainActivityFragment extends Fragment {
         }).execute(new Pair<Context, String>(mContext, JOKE_CATEGORIES_FREE[mGridViewPosition]));
     }
 
+    /**
+     * Method to request new Interstitial Ad
+     */
     private void requestInterstitialAd() {
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
     }
