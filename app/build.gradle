@@ -50,13 +50,6 @@ android {
             minSdkVersion 21
         }
     }
-
-    sourceSets {
-        paid {
-            manifest.srcFile 'src/paid/AndroidManifest.xml'
-            java.srcDirs = ['src/paid/java']
-        }
-    }
 }
 
 dependencies {
@@ -66,7 +59,7 @@ dependencies {
     endpointsServer project(path: ':backend', configuration: 'endpoints')
     implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
     implementation "com.android.support:support-v4:$rootProject.supportLibraryVersion"
-    implementation "com.google.android.gms:play-services-ads:$rootProject.gmsAdsLibraryVersion"
+    freeImplementation "com.google.android.gms:play-services-ads:$rootProject.gmsAdsLibraryVersion"
     implementation "com.google.api-client:google-api-client:$rootProject.googleApiClientVersion"
     implementation "com.google.http-client:google-http-client-android:$rootProject.googleApiClientVersion"
     implementation "com.google.code.findbugs:jsr305:$rootProject.findbugsVersion"
