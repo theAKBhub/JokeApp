@@ -16,8 +16,8 @@ __________________
 
 
 # Screenshots
-<img src="/art/Screen-1.jpg" width="350" height="641"> <img src="/art/Screen-2.jpg" width="350" height="641"> <img src="/art/Screen-3.jpg" width="350" height="641">
-<img src="/art/Screen-2a.jpg" width="350" height="641"> <img src="/art/Screen-4.jpg" width="350" height="641">
+<img src="/art/Screen-1.jpg" width="300" height="549"> <img src="/art/Screen-2.jpg" width="300" height="549"> <img src="/art/Screen-3.jpg" width="300" height="549">
+<img src="/art/Screen-2a.jpg" width="300" height="549"> <img src="/art/Screen-4.jpg" width="300" height="549">
 
 _____________
 
