@@ -4,9 +4,6 @@ apply plugin: 'com.google.cloud.tools.endpoints-framework-client'
 
 buildscript {
     repositories {
-        mavenCentral()
-        maven { url 'https://maven.google.com' }
-        google()
         jcenter()
     }
     dependencies {
@@ -68,7 +65,7 @@ dependencies {
     endpointsServer project(path: ':backend', configuration: 'endpoints')
     implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
     implementation "com.android.support:support-v4:$rootProject.supportLibraryVersion"
-
+    implementation "com.android.support:customtabs:$rootProject.supportLibraryVersion"
     implementation "com.google.api-client:google-api-client:$rootProject.googleApiClientVersion"
     implementation "com.google.http-client:google-http-client-android:$rootProject.googleApiClientVersion"
     implementation "com.google.code.findbugs:jsr305:$rootProject.findbugsVersion"

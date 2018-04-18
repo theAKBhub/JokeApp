@@ -1,3 +1,30 @@
+# Baking App
+*Created as part of Udacity's Android Developer NanoDegree course by Google*
+
+__________________
+
+#### Project Features
+
+- A Java library that acts as the joke repository
+- An Android library that is used to display the jokes passed on as Intent from main app module
+- A Google Cloud Endpoints module that serves jokes to the main app module via AsyncTask
+- Paid and Free flavors with ads in Free flavor only, along with required gradle dependencies
+- A connected test that verifies AsyncTask loading jokes
+- Interstitial ad that is shown after a joke category is selected, and before the joke is displayed
+- Loading indicator
+- A custom gradle task that launches GCE local server, run the connected tests, and shuts down the server.
+
+#
+# Screenshots
+<img src="/art/Screen-1.jpg" width="350" height="641">
+<img src="/art/Screen-2.jpg" width="350" height="641">
+<img src="/art/Screen-3.jpg" width="350" height="641">
+<img src="/art/Screen-2a.jpg" width="350" height="641">
+<img src="/art/Screen-4.jpg" width="350" height="641">
+
+#
+__________________
+
 # Gradle for Android and Java Final Project
 
 In this project, you will create an app with multiple flavors that uses
@@ -91,7 +118,7 @@ the Setup Cloud SDK.
 Start or stop your local server by using the gradle tasks as shown in the following
 screenshot:
 
-<img src="/FinalProject/GCE-server-gradle-tasks.png" height="500">
+<img src="/art/GCE-server-gradle-tasks.png" height="500">
 
 Once your local GCE server is started you should see the following at 
 [localhost:8080](http://localhost:8080)
