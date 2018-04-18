@@ -14,18 +14,14 @@ __________________
 - Loading indicator
 - A custom gradle task that launches GCE local server, run the connected tests, and shuts down the server.
 
-#
+
 # Screenshots
-<img src="/art/Screen-1.jpg" width="350" height="641">
-<img src="/art/Screen-2.jpg" width="350" height="641">
-<img src="/art/Screen-3.jpg" width="350" height="641">
-<img src="/art/Screen-2a.jpg" width="350" height="641">
-<img src="/art/Screen-4.jpg" width="350" height="641">
+<img src="/art/Screen-1.jpg" width="350" height="641"> <img src="/art/Screen-2.jpg" width="350" height="641"> <img src="/art/Screen-3.jpg" width="350" height="641">
+<img src="/art/Screen-2a.jpg" width="350" height="641"> <img src="/art/Screen-4.jpg" width="350" height="641">
 
-#
-__________________
+_____________
 
-# Gradle for Android and Java Final Project
+# Project Specification
 
 In this project, you will create an app with multiple flavors that uses
 multiple libraries and Google Cloud Endpoints. The finished app will consist
