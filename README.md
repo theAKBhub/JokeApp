@@ -1,4 +1,4 @@
-# Baking App
+# Joke App
 *Created as part of Udacity's Android Developer NanoDegree course by Google*
 
 __________________
