@@ -195,3 +195,48 @@ Once you have a functioning project, consider adding more features to test your 
 Icon Copyrights
 ------------------------------
 Icons sourced from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> are licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+
+<br/><br/><br/>
+
+```
+PROJECT LICENSE
+
+Copyright (c) 2019 Aditi Bhattacharya. All rights reserved.
+
+This project was submitted by Aditi Bhattacharya (project owner and author) as part 
+of the Android Developer Nanodegree course at Udacity. As per Udacity's "Honor Code and 
+Community Code of Conduct", all submissions must be the student's own work to 
+avoid plagiarism. 
+
+Hence, reproduction/submission of part or all of this project for Udacity or a similar 
+training institution, or using/distributing this project for commercial reasons 
+is prohibited  under all circumstances.
+
+
+MIT License
+
+Copyright (c) <year> <copyright holders>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+Links:<br/>
+![Udacity](https://eu.udacity.com/)<br/>
+![Udacity's Honor Code and Community Code of Conduct](https://eu.udacity.com/legal/community-guidelines)
